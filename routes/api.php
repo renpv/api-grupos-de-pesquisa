@@ -15,6 +15,11 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('/ping', fn()=>['pong'=>true]);
 
+
+Route::get('/', 'App\Http\Controllers\GroupsController@index');
+
+Route::post('/group', 'App\Http\Controllers\GroupsController@store');
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
