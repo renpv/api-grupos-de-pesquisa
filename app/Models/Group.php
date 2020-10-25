@@ -9,6 +9,8 @@ class Group extends Model
 {
     use HasFactory;
     public $timestamps = false;
+    protected $primaryKey = 'espelho';
+    public $incrementing = false;
     protected $fillable = 
     [
         'espelho', 'status', 'anoformacao', 'datasituacao', 'ultimoenvio', 

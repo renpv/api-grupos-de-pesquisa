@@ -53,19 +53,23 @@ class GroupsController extends Controller
         if (filter_var($url, FILTER_VALIDATE_URL)) {
             //URL Válida
             $scrap = $this->scrap($url);
-            if($this->array['error'] !== false){
+            if($this->array['error'] === ''){
                 $g = Group::updateOrCreate(
-                    ['espelho' => $scrap['espelho']],
-                    ['status' => $scrap['status'],
-                    'anoformacao' => $scrap['anoformacao'],
-                    'datasituacao' => $scrap['datasituacao'],
-                    'ultimoenvio' => $scrap['ultimoenvio'],
-                    'area' => $scrap['area'],
-                    'uf' => $scrap['uf'],
-                    'telefone' => $scrap['telefone'],
-                    'contato' => $scrap['contato'],
-                    'titulo' => $scrap['titulo'],
-                    'lideres' => $scrap['lideres']]
+                    [
+                        'espelho' => $scrap['espelho']
+                    ],
+                    [
+                        'status' => $scrap['status'],
+                        'anoformacao' => $scrap['anoformacao'],
+                        'datasituacao' => $scrap['datasituacao'],
+                        'ultimoenvio' => $scrap['ultimoenvio'],
+                        'area' => $scrap['area'],
+                        'uf' => $scrap['uf'],
+                        'telefone' => $scrap['telefone'],
+                        'contato' => $scrap['contato'],
+                        'titulo' => $scrap['titulo'],
+                        'lideres' => $scrap['lideres']
+                    ]
                 );
             }
 
@@ -73,8 +77,7 @@ class GroupsController extends Controller
             $this->array['error'][] = "URL invalida";
         }
 
-        $this->array['result'][] = $g;
-        $this->array['result'][] = $scrap;
+        $this->array['result']['srcap'] = $scrap;
 
 
         return $this->array;

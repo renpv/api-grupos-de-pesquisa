@@ -23,7 +23,7 @@ class Group extends Migration
             $table->string('uf');
             $table->string('telefone');
             $table->string('contato');
-            $table->string('titulo')->unique();
+            $table->string('titulo');
             $table->string('lideres');
         });
     }
